@@ -72,9 +72,9 @@
   top: 50%;
   left: 50%;
   width: 90vw;
-  max-width: 500px;
-  min-width: 300px;
-  height: 40rem;
+  max-width: 700px;
+  min-width: 350px;
+  height: auto;
   min-height: 320px;
   max-height: 90vh;
   transform: translate(-50%, -50%) scale(1.08);
@@ -85,7 +85,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2.5rem 2rem 2rem 2rem;
+  padding: 3rem 2.5rem 2.5rem 2.5rem;
   cursor: default;
   animation: expandCard 0.4s cubic-bezier(.4,2,.6,1);
 }
@@ -133,4 +133,70 @@
 /* Garante que o conteúdo atrás do card expandido não role */
 body:has(.home-card.expanded) {
   overflow: hidden;
+}
+
+.home-cards-row.expanded-row {
+  align-items: flex-start;
+}
+
+.tabs-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: -2px;
+  border-bottom: 2px solid transparent;
+}
+.tab-btn.active {
+  background: #444;
+  color: #ffe082;
+  border-bottom: 2px solid #ffe082;
+  font-weight: bold;
+  z-index: 2;
+}
+.tab-btn:not(.active):hover {
+  background: #333;
+}
+
+.tab-content {
+  background: rgba(30,30,30,0.95);
+  border-radius: 0 0 12px 12px;
+  padding: 1.2rem 1rem 1rem 1rem;
+  min-height: 120px;
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  margin-bottom: 1rem;
+  animation: fadeInDetails 0.5s;
+}
+
+.tab-content h4 {
+  margin-top: 0;
+  color: #ffe082;
+  font-size: 1.2rem;
+}
+
+.tab-content video,
+.home-card.expanded video {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 520px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
 }
