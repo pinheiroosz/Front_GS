@@ -1,35 +1,23 @@
 "use client";
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import './Login.css'; // Importando o arquivo CSS
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    // Exemplo de chamada à API (ajuste a URL depois)
-    try {
-      const response = await fetch('http://localhost:8080/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-      });
-      if (!response.ok) {
-        throw new Error('Usuário ou senha inválidos');
-      }
-      // Aqui você pode salvar o token ou redirecionar
-      // const data = await response.json();
-      alert('Login realizado com sucesso!');
-    } catch (err: any) {
-      setError(err.message || 'Erro ao fazer login');
-    } finally {
+    setTimeout(() => {
       setLoading(false);
-    }
+      router.push('/home');
+    }, 1000);
   };
 
   return (
@@ -39,7 +27,7 @@ const Login: React.FC = () => {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="login-field">
-            <label htmlFor="username">Usuário ou E-mail</label>
+            <label htmlFor="username">Usuário</label>
             <input
               id="username"
               type="text"
@@ -49,12 +37,12 @@ const Login: React.FC = () => {
             />
           </div>
           <div className="login-field">
-            <label htmlFor="password">Senha</label>
+            <label htmlFor="email">E-mail</label>
             <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+              id="email"
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               required
             />
           </div>

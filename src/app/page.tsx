@@ -1,4 +1,5 @@
-import Login from "../pages/Login/Login";
+import { Login } from "./routes";
+
 
 export default function Page() {
   return <Login />;

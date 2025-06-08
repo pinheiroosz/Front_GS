@@ -1,0 +1,136 @@
+.home-main-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 0;
+  filter: blur(2px);
+}
+
+.home-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  color: #fff;
+}
+
+.home-content h1 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.home-cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.home-card {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  padding: 2rem 1.5rem;
+  min-width: 260px;
+  max-width: 320px;
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(.4,2,.6,1), box-shadow 0.3s, background 0.3s, z-index 0s;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.home-card.faded {
+  opacity: 0.2;
+  pointer-events: none;
+  filter: blur(2px) grayscale(0.7);
+  z-index: 0;
+}
+
+.home-card.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 90vw;
+  max-width: 500px;
+  min-width: 300px;
+  height: 40rem;
+  min-height: 320px;
+  max-height: 90vh;
+  transform: translate(-50%, -50%) scale(1.08);
+  background: rgba(10, 10, 10, 0.97);
+  box-shadow: 0 8px 48px 8px rgba(0,0,0,0.7);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2.5rem 2rem 2rem 2rem;
+  cursor: default;
+  animation: expandCard 0.4s cubic-bezier(.4,2,.6,1);
+}
+
+@keyframes expandCard {
+  0% {
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+.home-card-details {
+  margin-top: 1.5rem;
+  text-align: left;
+  width: 100%;
+  color: #fff;
+  animation: fadeInDetails 0.5s;
+}
+
+@keyframes fadeInDetails {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.close-btn {
+  margin-top: 2rem;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.close-btn:hover {
+  background: #444;
+}
+
+/* Garante que o conteúdo atrás do card expandido não role */
+body:has(.home-card.expanded) {
+  overflow: hidden;
+}
