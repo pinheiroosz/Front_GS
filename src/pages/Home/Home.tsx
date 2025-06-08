@@ -273,7 +273,7 @@ const Home: React.FC = () => {
 							{expandedIdx === idx && (
 								<div className="home-card-details">
 									{idx === 0 ? (
-										<>
+										<div className="tabs-and-content">
 											<div className="tabs-container">
 												{disasterTabs.map((tab, tIdx) => (
 													<button
@@ -295,7 +295,7 @@ const Home: React.FC = () => {
 											<div className="tab-content">
 												{disasterTabs[disasterTab].content}
 											</div>
-										</>
+										</div>
 									) : (
 										card.content
 									)}
